@@ -33,7 +33,17 @@ namespace EFTesting.Controllers
             }
 
             var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == id);  // Change between ProductId or Id
+
+
+            //This will not result in client evaluation
+            //var idName = _context.Model.FindEntityType(typeof(Product))
+            //                .FindPrimaryKey().Properties.Single().Name;
+
+            //var product = await _context.Product
+            //    .FirstOrDefaultAsync(x => (EF.Property<int>(x, idName)) == id);
+
+
             if (product == null)
             {
                 return NotFound();
